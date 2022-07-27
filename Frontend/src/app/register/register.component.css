@@ -1,0 +1,11 @@
+form{
+    width: 500px;
+    align-items: center;
+}
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

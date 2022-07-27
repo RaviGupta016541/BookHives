@@ -1,0 +1,25 @@
+
+<h1 id="heading">Book Details</h1>
+<div class="container my-4">
+  <div class="row">
+      <div class="col-md-3">
+          <div class="row">
+              <img src="{{bookDetails.bookImage}}" width="233px" height="385px">
+          </div>
+      </div>
+      <div class="col-md-6">
+          <h2>{{bookDetails.bookName|uppercase}}</h2>
+          <h6>by {{bookDetails.authorName|titlecase}} (Author)</h6>
+          <p>Year of publish: {{bookDetails.yearPublish}} |Edition: {{bookDetails.bookEdition}}</p>
+
+          <p>{{bookDetails.bookDescription}}</p>
+          <h3>Price: ₹ {{bookDetails.bookPrice}}</h3>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 cartBtn">
+        <button id="#" class="btn btn-primary cart " (click)="addToCart(bookDetails)">Add to cart</button>
+
+      </div>
+  </div>
+</div>

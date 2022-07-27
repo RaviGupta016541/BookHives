@@ -1,0 +1,15 @@
+
+#heading{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color:rgb(50, 50, 230);
+  width: 20%;
+  margin:auto;
+  display:block;
+  text-align:center;
+  margin-top:35px;
+  margin-bottom:5px;
+}
+.cartBtn{
+  margin-top: 10rem;
+  margin-left: 6rem;
+}

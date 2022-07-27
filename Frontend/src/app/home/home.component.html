@@ -1,0 +1,90 @@
+<div class="container my-3">
+  <form >
+  <div class="row   align-items-center">
+      <div class="col-3 ">
+<form [formGroup]="selectCategotyForm" (click)="submit(this.selectCategotyForm.value)">
+
+    <select formControlName="book" class="form-select form-select-lg mt-1" >
+      <option [ngValue]="null" disabled>SELECT CATEGORY</option>
+      <option *ngFor="let book of bookCategoryAvailable"   [ngValue]="book">{{book|uppercase}}</option>
+    </select>
+
+  </form>
+    </div>
+      <div class="col-md-8">
+        <div class="search">
+          <i class="fa fa-search"></i> <input type="text"   class="form-control"
+            placeholder="Search Books" name="search" id="search"  [(ngModel)] ="searchTerm" (keyup)="search($event)" > <button
+            class="btn btn-primary">Search</button> </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<h1 id="heading">{{title}}</h1>
+<div id="showFilter" *ngIf="!showFilterd;else elseblock">
+
+<div  id="conn" *ngFor="let i of AllBooks | filterBooks:searchTerm :'bookName'">
+<div class="container-fluid" id="con"  >
+  <div class="col-xs-3 col-sm-3 col-md-3 ">
+    <div class="card my-3" style="width: 19rem" >
+      <img  src='{{i.bookImage}}' class="card-img-top"/>
+      <div class="card-body">
+        <h5 class="card-title" *ngIf="i.bookName.length<25;else elseblock" > {{i.bookName|uppercase}} </h5>
+        <ng-template #elseblock><h5 class="card-title">{{i.bookName |uppercase| slice:0:21 }}...</h5></ng-template>
+        <h6 class="card-text">₹ {{i.bookPrice}}</h6>
+      </div>
+      <div class="card-footer">
+        <p id="category">{{i.categoryName}}</p>
+        <a >
+          <button id="#" routerLink="details" (click)="sendDetails(i.bookId)" class="btn btn-primary cart">Details</button>
+        </a>
+        <a >
+          <!-- <button id="#" class="btn btn-primary cart" (click)="addToCart(i.bookId)" >Add to cart</button> -->
+          <button class="btn btn-primary" (click)=addToCart(i)>Add to cart</button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+</div>
+<ng-template #elseblock >
+
+  <div  id="conn" *ngFor="let i of filteredList | filterBooks:searchTerm :'bookName'">
+    <div class="container-fluid" id="con"  >
+      <div class="col-xs-3 col-sm-3 col-md-3 ">
+        <div class="card my-3" style="width: 19rem" >
+          <img  src='{{i.bookImage}}' class="card-img-top"/>
+          <div class="card-body">
+            <h5 class="card-title" *ngIf="i.bookName.length<25;else elseblock" > {{i.bookName|uppercase}} </h5>
+            <ng-template #elseblock><h5 class="card-title">{{i.bookName |uppercase| slice:0:21 }}...</h5></ng-template>
+            <h6 class="card-text">₹ {{i.bookPrice}}</h6>
+          </div>
+          <div class="card-footer">
+            <p id="category">{{i.categoryName}}</p>
+            <a >
+              <button id="#" routerLink="details" (click)="sendDetails(i.bookId)" class="btn btn-primary cart">Details</button>
+            </a>
+            <a >
+              <button class="btn btn-primary" (click)=addToCart(i)>Add to cart</button>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+</ng-template>
+
+
+
+
+
+
+<div id="searchError" *ngIf="this.bookvar.filteredArrayLength == 0">
+ <img src="../../assets/img/No data found.png" class="rounded mx-auto d-block" width="900px" height="510px">
+</div>

@@ -1,0 +1,26 @@
+
+
+
+
+<div class="heading">
+  <h2 id="headingText"> My Orders</h2>
+</div>
+  <button class="btn btn-secondary"  (click)="sh()"> Press to see previos orders</button>
+<div *ngFor="let item of filteredOrder">
+      <div class="container my-3">
+    <div id="item" class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col-md-10 p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary"> {{item.dateofPurchase | date}}</strong>
+            <h1 class="card-text mb-auto">{{item.bookName| titlecase}}</h1>
+            <h6 class="card-text mb-auto">Price (one item): {{item.bookPrice}}</h6>
+            <h6 class="card-text mb-auto">Quantity: {{item.quantity}}</h6>
+            <h2 class="card-text mb-auto">Total: ₹{{item.total}}</h2>
+
+        </div>
+        <div class="col-2 imgs">
+            <img src="{{item.bookImage}}" class="feaurette-image img-fluid mx-auto">
+        </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand"><img id='logo' src="../assets/img/Logo2.jpeg"></a>
+    <button class="navbar-toggler collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav">
+        <li class="nav-item">
+          <a class="nav-link ml-2" aria-current="page" id="focusmeplease" routerLink="home" routerLinkActive="activeLink" >Home</a>
+        </li>
+
+        <li class="nav-item ml-2">
+          <a class="nav-link" aria-current="page" routerLink="showOrder" *ngIf="this.req.isValidUser" routerLinkActive="activeLink">Order </a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link" aria-current="page" routerLink="aboutus" routerLinkActive="activeLink">About us</a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link" aria-current="page" routerLink="contactus" routerLinkActive="activeLink">Contact us</a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link" aria-current="page" *ngIf="this.req.isValidEmployee" routerLink="dashboard" routerLinkActive="activeLink">dashboard</a>
+        </li>
+      </ul>
+
+      <div class="ml-auto ">
+
+
+        <button id="cartBtn" type="button"   routerLink="cart" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="My Cart" >
+          <img  id="cartLogo" src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png" >
+
+          <div style="font-size: 10px;" class="badge bg-danger">{{this.cartService.totalProducts}}</div>
+      </button>
+
+      <button type="button" *ngIf="!(!this.req.isValidEmployee !== (!this.req.isValidUser))" class="btn btn-success" routerLink="EmployeeLogin">
+        Admin
+      </button>
+
+      <button type="button" *ngIf="this.req.isValidEmployee" class="btn btn-success" (click)="EmpLogout()">
+        Logout Admin
+      </button>
+
+      <button type="button" *ngIf="this.req.isValidUser" class="btn btn-success" (click)="Logout()">
+        Logout
+      </button>
+
+
+      <button type="button" *ngIf="!(this.req.isValidUser !== (this.req.isValidEmployee)) " class="btn btn-success" routerLink="Login">
+        Login
+      </button>
+
+      <button type="button" *ngIf="!(this.req.isValidUser !== (this.req.isValidEmployee))  " routerLink="Register" class="btn btn-success mr-3">
+        SignUp
+      </button>
+    </div>
+    </div>
+  </div>
+</nav>
